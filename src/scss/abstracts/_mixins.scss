@@ -1,61 +1,57 @@
 @mixin push--auto {
-	margin: {
-		left: auto;
-		right: auto;
-	}
+  margin: {
+    left: auto;
+    right: auto;
+  }
 }
 
 @mixin pseudo($disp: block, $pos: absolute, $cont: '') {
-	content: $cont;
-	position: $pos;
-	display: $disp;
+  content: $cont;
+  position: $pos;
+  display: $disp;
 }
 
-@mixin font-source($family: false, $size: false, $lh: false, $weight: initial, $color: false) {
+@mixin media-source($type: false) {
+  @if $type ==laptop {
+    @media (width <=$media-laptop) {
+      @content;
+    }
+  }
 
-	@if $family ==1 {
-		font-family: $main-font, Helvetica, Verdana, Arial, sans-serif;
-	}
+  @if $type ==tablet {
+    @media (width <=$media-tablet) {
+      @content;
+    }
+  }
 
-	@if $family ==2 {
-		font-family: $second-font, Helvetica, Verdana, Arial, sans-serif;
-	}
+  @if $type ==mobile {
+    @media (width <=$media-mobile) {
+      @content;
+    }
+  }
 
-	@if $size {
-		font-size: $size;
-	}
-
-	@if $color {
-		color: $color;
-	}
-
-	@if $weight {
-		font-weight: $weight;
-	}
-
-	@if $lh {
-		line-height: $lh;
-	}
+  @if $type ==mobile-small {
+    @media (width <=$media-mobile-small) {
+      @content;
+    }
+  }
 }
 
-@mixin placeholder {
-	&:-moz-placeholder {
-		@content;
-	}
+@mixin font-source($size: false, $lh: false, $weight: initial, $color: false) {
 
-	&::-moz-placeholder {
-		@content;
-	}
+  @if $size {
+    font-size: $size;
+  }
 
-	&:-ms-input-placeholder {
-		@content;
-	}
+  @if $color {
+    color: $color;
+  }
 
-	&::-webkit-input-placeholder {
-		@content;
-	}
+  @if $weight {
+    font-weight: $weight;
+  }
 
-	&.placeholder {
-		@content;
-	}
+  @if $lh {
+    line-height: $lh;
+  }
 }
